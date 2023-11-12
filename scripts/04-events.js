@@ -1,5 +1,6 @@
 const hre = require("hardhat");
 const { ethers } = hre;
+const { BigNumber } = ethers;
 
 async function main() {
   const PAIR_ADDRESS = "0x9382988a9BC661ecCc69DEAe72ff92847eD38052";
@@ -19,9 +20,22 @@ async function main() {
   const allEvents = await pairContract.queryFilter("*", 0, "latest");
 
   allEvents.forEach((event) => {
+    console.log(
+      "-----------------------------------------------------------------"
+    );
     console.log(`Event: ${event.event} - Block Number: ${event.blockNumber}`);
-    console.log(event.args);
+    Object.entries(event.args).forEach(([key, value]) => {
+      if (BigNumber.isBigNumber(value)) {
+        // Format pour les valeurs BigNumber, supposant 18 décimales
+        console.log(`${key}: ${ethers.utils.formatUnits(value, 18)}`);
+      } else {
+        console.log(`${key}: ${value}`);
+      }
+    });
   });
+  console.log(
+    "-----------------------------------------------------------------"
+  );
 }
 
 main()

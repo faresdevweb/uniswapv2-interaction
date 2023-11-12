@@ -23,7 +23,7 @@ async function main() {
   const router = new ethers.Contract(ROUTER_ADDRESS, UNISWAP_ROUTER_ABI, owner);
 
   // Montant à échanger
-  const amountIn = utils.parseUnits("1000", 6);
+  const amountIn = utils.parseUnits("10000", 6);
   const amountOutMin = 0;
 
   // Deadline de la transaction
@@ -33,7 +33,7 @@ async function main() {
   const tx = await router.swapExactTokensForTokens(
     amountIn,
     amountOutMin,
-    [USDT_ADDRESS, USDC_ADDRESS],
+    [USDC_ADDRESS, USDT_ADDRESS],
     owner.address,
     deadline
   );
