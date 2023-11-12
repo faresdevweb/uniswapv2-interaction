@@ -108,8 +108,8 @@ async function main() {
     "-----------------------------------------------------------------"
   );
   console.log("add liquidity...");
-  const token0Amount = utils.parseUnits("100");
-  const token1Amount = utils.parseUnits("100");
+  const token0Amount = utils.parseUnits("100000");
+  const token1Amount = utils.parseUnits("100000");
   const deadline = Math.floor(Date.now() / 1000 + 10 * 60);
   const addLiquidityTx = await router
     .connect(owner)

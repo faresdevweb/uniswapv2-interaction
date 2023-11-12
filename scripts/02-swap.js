@@ -22,7 +22,7 @@ async function main() {
   // Initialiser le contrat du Router
   const router = new ethers.Contract(ROUTER_ADDRESS, UNISWAP_ROUTER_ABI, owner);
 
-  // Montant à échanger (exemple : 10 USDT)
+  // Montant à échanger
   const amountIn = utils.parseUnits("1000", 6);
   const amountOutMin = 0;
 
@@ -51,6 +51,9 @@ async function main() {
   let reserves;
   reserves = await pair.getReserves();
   console.log("reserve: ", reserves);
+  // Accéder aux valeurs des réserves
+  console.log("USDT Liquidity : ", ethers.utils.formatEther(reserves.reserve0));
+  console.log("USDC Liquidity : ", ethers.utils.formatEther(reserves.reserve1));
   console.log(
     "-----------------------------------------------------------------"
   );
