@@ -33,7 +33,7 @@ async function main() {
   const tx = await router.swapExactTokensForTokens(
     amountIn,
     amountOutMin,
-    [USDC_ADDRESS, USDT_ADDRESS],
+    [USDC_ADDRESS, USDT_ADDRESS], // [to, from]
     owner.address,
     deadline
   );

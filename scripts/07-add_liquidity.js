@@ -1,5 +1,8 @@
 const hre = require("hardhat");
-const { ethers, utils, constants } = hre;
+const { ethers } = require("hardhat");
+const { utils, constants } = ethers;
+
+const routerArtifact = require("@uniswap/v2-periphery/build/UniswapV2Router02.json");
 
 async function main() {
   const accounts = await ethers.getSigners();
@@ -40,11 +43,12 @@ async function main() {
   const token1Amount = utils.parseUnits("150000", 18);
   const deadline = Math.floor(Date.now() / 1000) + 10 * 60;
 
-  const routerContract = await ethers.getContractAt(
-    "UniswapV2Router02",
+  const routerContract = new ethers.Contract(
     routerAddress,
+    routerArtifact.abi,
     account
   );
+
   const addLiquidityTx = await routerContract.addLiquidity(
     USDT_ADDRESS,
     USDC_ADDRESS,

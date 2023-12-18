@@ -26,26 +26,16 @@ async function main() {
   console.log(
     "-----------------------------------------------------------------"
   );
-  console.log("Deploying Tether USDT...");
-  const Usdt = await ethers.getContractFactory("Tether", owner);
-  const usdt = await Usdt.deploy();
-  console.log("usdt deployed address: ", usdt.address);
-  console.log(
-    "-----------------------------------------------------------------"
-  );
-  console.log("Deploying USDC...");
-  const Usdc = await ethers.getContractFactory("UsdCoin", owner);
-  const usdc = await Usdc.deploy();
-  console.log("usdc deployed address: ", usdc.address);
-  console.log(
-    "-----------------------------------------------------------------"
-  );
+  console.log("Deploying ShitCoin...");
+  const shitCoin = await ethers.getContractFactory("ShitCoin", owner);
+  console.log("usdt deployed address: ", shitCoin.address);
   console.log(
     "-----------------------------------------------------------------"
   );
   console.log("minting token for owner");
-  await usdt.connect(owner).mint(owner.address, utils.parseEther("1000000000"));
-  await usdc.connect(owner).mint(owner.address, utils.parseEther("1000000000"));
+  await shitCoin
+    .connect(owner)
+    .mint(owner.address, utils.parseEther("1000000000"));
   console.log(
     "-----------------------------------------------------------------"
   );
